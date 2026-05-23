@@ -45,11 +45,9 @@ def register_view(request):
 
 
 def login_view(request):
-
     if request.method == "POST":
-
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("username").strip()
+        password = request.POST.get("password").strip()
 
         user = authenticate(
             request,
@@ -59,15 +57,12 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, "Login successful")
             return redirect("home")
-
         else:
             messages.error(request, "Invalid username or password")
             return redirect("login")
 
     return render(request, "login.html")
-
 
 @login_required(login_url='login')
 def home_view(request):
