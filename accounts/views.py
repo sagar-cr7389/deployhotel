@@ -6,30 +6,20 @@ from django.contrib import messages
 
 
 def register_view(request):
-
     if request.method == "POST":
-
-        username = request.POST.get("username")
-        email = request.POST.get("email")
+        username = request.POST.get("username").strip()
+        email = request.POST.get("email").strip()
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
 
-        # Password check
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
             return redirect("register")
 
-        # Username already exists
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists")
             return redirect("register")
 
-        # Email already exists
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already exists")
-            return redirect("register")
-
-        # Create user
         user = User.objects.create_user(
             username=username,
             email=email,
@@ -37,8 +27,7 @@ def register_view(request):
         )
 
         user.save()
-
-        messages.success(request, "Registration successful")
+        messages.success(request, "Registration successful. Please login.")
         return redirect("login")
 
     return render(request, "register.html")
@@ -47,7 +36,7 @@ def register_view(request):
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username").strip()
-        password = request.POST.get("password").strip()
+        password = request.POST.get("password")
 
         user = authenticate(
             request,
