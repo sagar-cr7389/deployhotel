@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .navbar {
+            background: white;
+            color: #0f172a;
+            padding: 20px 55px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: #92400e;
+            font-size: 26px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            background: #dc2626;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background: #b91c1c;
+        }
+
+        .hero {
+            padding: 90px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            color: #0f172a;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 12px;
+            color: #78350f;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #475569;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            padding: 55px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px 28px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            transition: 0.3s;
+        }
+
+        .card h3 {
+            color: #92400e;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Hotel Booking</h2>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+<div class="hero">
+    <h1>Welcome, {{ request.user.username }}</h1>
+    <p>Find and book your perfect hotel room easily.</p>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <h3>Luxury Rooms</h3>
+        <p>Book premium rooms with top facilities.</p>
+    </div>
+
+    <div class="card">
+        <h3>Affordable Stay</h3>
+        <p>Comfortable rooms at budget prices.</p>
+    </div>
+
+    <div class="card">
+        <h3>Easy Booking</h3>
+        <p>Fast and secure hotel reservation.</p>
+    </div>
+</div>
+
+</body>
+</html>
