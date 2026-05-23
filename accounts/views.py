@@ -20,7 +20,10 @@ def register_view(request):
             messages.error(request, "Username already exists")
             return redirect("register")
 
-        user = User(username=username, email=email)
+        user = User.objects.create_user(
+            username=username,
+            email=email
+        )
         user.set_password(password)
         user.save()
 
