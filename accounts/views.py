@@ -22,15 +22,16 @@ def register_view(request):
 
         user = User.objects.create_user(
             username=username,
-            email=email
+            email=email,
+            password=password
         )
-        user.set_password(password)
-        user.save()
 
+        user.save()
         messages.success(request, "Registration successful. Please login.")
         return redirect("login")
 
     return render(request, "register.html")
+
 
 def login_view(request):
     if request.method == "POST":
